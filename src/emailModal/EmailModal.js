@@ -3,9 +3,14 @@ import { EmailContext } from "../contexts/EmaiContextlProvider";
 
 const EmailModal = () => {
   const { newState } = useContext(EmailContext);
+  const openModal = newState.openModal;
   console.log(newState);
   return (
-    <section className="email-modal email-modal--visible">
+    <section
+      className={
+        openModal ? "email-modal  email-modal--visible" : "email-modal"
+      }
+    >
       <div className="email-modal__close-btn">
         <i className="gg-close" />
       </div>
