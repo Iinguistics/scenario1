@@ -13,14 +13,15 @@ const EmailModal = () => {
       openModalHandler();
     });
   }, []);
+
   return (
     <section
       className={
         openModal ? "email-modal  email-modal--visible" : "email-modal"
       }
     >
-      <div className="email-modal__close-btn">
-        <i className="gg-close" />
+      <div className="email-modal__close-btn" onClick={closeModalHandler}>
+        <i className="fa fa-window-close" />
       </div>
       <div className="email-modal__container">
         <div className="email-modal__info">

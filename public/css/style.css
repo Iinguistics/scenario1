@@ -162,3 +162,7 @@
 .email-thank--success .email-thank__message {
   opacity: 1;
 }
+
+.fa-window-close {
+  font-size: 1.8rem;
+}
