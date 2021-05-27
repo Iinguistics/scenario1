@@ -3,8 +3,7 @@ import { EmailContext } from "../contexts/EmaiContextlProvider";
 
 const EmailModal = () => {
   const { newState } = useContext(EmailContext);
-  const { openModalHandler } = useContext(EmailContext);
-  const { closeModalHandler } = useContext(EmailContext);
+  const { openModalHandler, closeModalHandler } = useContext(EmailContext);
   const openModal = newState.openModal;
   console.log(newState);
 
