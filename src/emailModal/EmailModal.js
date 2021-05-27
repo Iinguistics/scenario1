@@ -1,18 +1,20 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
 
 const EmailModal = () => {
   const { newState } = useContext(EmailContext);
   const { openModalHandler, closeModalHandler } = useContext(EmailContext);
   const openModal = newState.openModal;
-  console.log(newState);
+  //console.log(newState);
+
+  const logo = useRef("");
 
   useEffect(() => {
     document.body.addEventListener("mouseleave", () => {
       openModalHandler();
     });
   }, []);
-
+  console.log(logo.current.textContent);
   return (
     <section
       className={
@@ -24,7 +26,7 @@ const EmailModal = () => {
       </div>
       <div className="email-modal__container">
         <div className="email-modal__info">
-          <div className="logo">
+          <div className="logo" ref={logo}>
             Berry
             <div className="logo__sub">by Jenny</div>
           </div>
