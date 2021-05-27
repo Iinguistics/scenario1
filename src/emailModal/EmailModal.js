@@ -1,10 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
 
 const EmailModal = () => {
   const { newState } = useContext(EmailContext);
+  const { openModalHandler } = useContext(EmailContext);
   const openModal = newState.openModal;
   console.log(newState);
+
+  useEffect(() => {
+    document.body.addEventListener("mouseleave", () => {
+      openModalHandler();
+    });
+  }, []);
   return (
     <section
       className={

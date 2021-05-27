@@ -7,12 +7,21 @@ const EmailContextProvider = ({ children }) => {
     openModal: false,
   });
 
-  // const addBook = (title, id) => {
-  //   setBooks([...books, { title, id }]);
-  // };
+  const openModalHandler = () => {
+    setNewState({ ...newState, openModal: true });
+  };
 
+  const closeModalHandler = () => {
+    setNewState({ ...newState, openModal: false });
+  };
   return (
-    <EmailContext.Provider value={{ newState: newState }}>
+    <EmailContext.Provider
+      value={{
+        newState: newState,
+        openModalHandler: openModalHandler,
+        closeModalHandler: closeModalHandler,
+      }}
+    >
       {children}
     </EmailContext.Provider>
   );
