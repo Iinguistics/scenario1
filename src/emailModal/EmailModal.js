@@ -4,6 +4,7 @@ import { EmailContext } from "../contexts/EmaiContextlProvider";
 const EmailModal = () => {
   const { newState } = useContext(EmailContext);
   const { openModalHandler } = useContext(EmailContext);
+  const { closeModalHandler } = useContext(EmailContext);
   const openModal = newState.openModal;
   console.log(newState);
 
@@ -47,7 +48,10 @@ const EmailModal = () => {
             />
             <button className="email-modal__button">Send</button>
           </div>
-          <div className="email-modal__decline-offer">
+          <div
+            className="email-modal__decline-offer"
+            onClick={closeModalHandler}
+          >
             Sorry, I'm not interested
           </div>
         </div>
