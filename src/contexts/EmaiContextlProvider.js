@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import Cookies from "js-cookie";
 
 export const EmailContext = createContext();
 
@@ -8,6 +9,7 @@ const EmailContextProvider = ({ children }) => {
   });
 
   const openModalHandler = () => {
+    Cookies.set("modalOpenedBefore", true, { expires: 7 });
     setNewState({ ...newState, openModal: true });
   };
 

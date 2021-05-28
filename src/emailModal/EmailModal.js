@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
-
+import Cookies from "js-cookie";
 const EmailModal = () => {
   const [userEmail, setUserEmail] = useState("");
   const { newState } = useContext(EmailContext);
@@ -10,13 +10,16 @@ const EmailModal = () => {
   //console.log(newState);
 
   const logo = useRef("");
+  const modalOpenedBefore = Cookies.get("modalOpenedBefore");
 
   useEffect(() => {
-    document.body.addEventListener("mouseleave", () => {
-      openModalHandler();
-    });
+    if (!modalOpenedBefore) {
+      document.body.addEventListener("mouseleave", () => {
+        openModalHandler();
+      });
+    }
   }, []);
-  console.log(logo.current.textContent);
+  //console.log(logo.current.textContent);
 
   return (
     <section
