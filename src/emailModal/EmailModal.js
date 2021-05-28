@@ -77,10 +77,7 @@ const EmailModal = () => {
               onBlur={checkForEmailHandler}
               onFocus={removeErrorMessageHandler}
             />
-            <button
-              className="email-modal__button"
-              onClick={(e) => submittedFormHandler(e)}
-            >
+            <button className="email-modal__button" type="submit">
               Send
             </button>
           </div>
