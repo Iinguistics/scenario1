@@ -16,6 +16,7 @@ const EmailContextProvider = ({ children }) => {
 
   const closeModalHandler = () => {
     setOpenModelState(false);
+    window.location.reload();
   };
 
   const userEmailHandler = (e) => {
@@ -40,6 +41,9 @@ const EmailContextProvider = ({ children }) => {
     if (showEmailErrorState === false && userEmailState.length > 5) {
       setFormCompletedState(true);
     }
+    setTimeout(() => {
+      closeModalHandler();
+    }, 3000);
   };
 
   return (

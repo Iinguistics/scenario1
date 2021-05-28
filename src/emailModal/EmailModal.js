@@ -19,14 +19,14 @@ const EmailModal = () => {
   const modalOpenedBefore = Cookies.get("modalOpenedBefore");
 
   useEffect(() => {
-    // if (!modalOpenedBefore) {
-    //   document.body.addEventListener("mouseleave", () => {
-    //     openModalHandler();
-    //   });
-    // }
     document.body.addEventListener("mouseleave", () => {
-      openModalHandler();
+      if (!modalOpenedBefore) {
+        openModalHandler();
+      }
     });
+    // document.body.addEventListener("mouseleave", () => {
+    //   openModalHandler();
+    // });
   }, []);
   //console.log(logo.current.textContent);
   console.log(userEmailState);
