@@ -25,7 +25,6 @@ const EmailModal = () => {
   }, []);
   //console.log(logo.current.textContent);
   console.log(userEmailState);
-  console.log(modalOpenedBefore);
 
   return (
     <section
