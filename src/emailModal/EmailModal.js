@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
 import Cookies from "js-cookie";
 const EmailModal = () => {
-  const { userEmailState } = useContext(EmailContext);
-  const { openModalState } = useContext(EmailContext);
-  const { openModalHandler, closeModalHandler, userEmailHandler } =
-    useContext(EmailContext);
+  const {
+    userEmailState,
+    openModalState,
+    openModalHandler,
+    closeModalHandler,
+    userEmailHandler,
+  } = useContext(EmailContext);
 
   const logo = useRef("");
   const modalOpenedBefore = Cookies.get("modalOpenedBefore");
@@ -22,6 +25,7 @@ const EmailModal = () => {
   }, []);
   //console.log(logo.current.textContent);
   console.log(userEmailState);
+  console.log(modalOpenedBefore);
 
   return (
     <section
