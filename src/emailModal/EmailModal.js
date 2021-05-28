@@ -2,9 +2,11 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
 
 const EmailModal = () => {
+  const [userEmail, setUserEmail] = useState("");
   const { newState } = useContext(EmailContext);
   const { openModalHandler, closeModalHandler } = useContext(EmailContext);
   const openModal = newState.openModal;
+  //const closed = newState.closed;
   //console.log(newState);
 
   const logo = useRef("");
@@ -15,6 +17,7 @@ const EmailModal = () => {
     });
   }, []);
   console.log(logo.current.textContent);
+
   return (
     <section
       className={
@@ -47,6 +50,8 @@ const EmailModal = () => {
               type="email"
               className="email-modal__input"
               placeholder="youremail@mail.com"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
             />
             <button className="email-modal__button">Send</button>
           </div>

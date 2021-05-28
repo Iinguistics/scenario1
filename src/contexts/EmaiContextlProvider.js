@@ -14,6 +14,7 @@ const EmailContextProvider = ({ children }) => {
   const closeModalHandler = () => {
     setNewState({ ...newState, openModal: false });
   };
+
   return (
     <EmailContext.Provider
       value={{
