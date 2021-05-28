@@ -5,9 +5,12 @@ const EmailModal = () => {
   const {
     userEmailState,
     openModalState,
+    showEmailErrorState,
     openModalHandler,
     closeModalHandler,
     userEmailHandler,
+    checkForEmailHandler,
+    removeErrorMessageHandler,
   } = useContext(EmailContext);
 
   const logo = useRef("");
@@ -50,7 +53,13 @@ const EmailModal = () => {
               notifications, discounts, and our award winning newsletter.
             </span>
           </p>
-          <div className="email-modal__error-message">
+          <div
+            className={
+              showEmailErrorState
+                ? "email-modal__error-message--active"
+                : "email-modal__error-message"
+            }
+          >
             Sorry this is not a valid email
           </div>
           <div className="email-modal__form-group">
@@ -60,6 +69,8 @@ const EmailModal = () => {
               placeholder="youremail@mail.com"
               value={userEmailState}
               onChange={(e) => userEmailHandler(e)}
+              onBlur={checkForEmailHandler}
+              onFocus={removeErrorMessageHandler}
             />
             <button className="email-modal__button">Send</button>
           </div>

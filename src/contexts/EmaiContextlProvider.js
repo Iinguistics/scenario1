@@ -6,6 +6,7 @@ export const EmailContext = createContext();
 const EmailContextProvider = ({ children }) => {
   const [openModalState, setOpenModelState] = useState(false);
   const [userEmailState, setUserEmailState] = useState("");
+  const [showEmailErrorState, setShowEmailErrorState] = useState(false);
 
   const openModalHandler = () => {
     Cookies.set("modalOpenedBefore", true, { expires: 7 });
@@ -20,14 +21,30 @@ const EmailContextProvider = ({ children }) => {
     setUserEmailState(e.target.value);
   };
 
+  const checkForEmailHandler = (e) => {
+    function emailIsValid(text) {
+      return /\S+@\S+\.\S+/.test(text);
+    }
+    if (!emailIsValid(userEmailState)) {
+      setShowEmailErrorState(true);
+    }
+  };
+
+  const removeErrorMessageHandler = (e) => {
+    setShowEmailErrorState(false);
+  };
+
   return (
     <EmailContext.Provider
       value={{
         openModalState,
         userEmailState,
-        openModalHandler: openModalHandler,
-        closeModalHandler: closeModalHandler,
-        userEmailHandler: userEmailHandler,
+        showEmailErrorState,
+        openModalHandler,
+        closeModalHandler,
+        userEmailHandler,
+        checkForEmailHandler,
+        removeErrorMessageHandler,
       }}
     >
       {children}
