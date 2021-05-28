@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { EmailContext } from "../contexts/EmaiContextlProvider";
 import Cookies from "js-cookie";
 const EmailModal = () => {
-  const [userEmail, setUserEmail] = useState("");
-  const { newState } = useContext(EmailContext);
-  const { openModalHandler, closeModalHandler } = useContext(EmailContext);
-  const openModal = newState.openModal;
+  const { userEmailState } = useContext(EmailContext);
+  const { openModalState } = useContext(EmailContext);
+  const { openModalHandler, closeModalHandler, userEmailHandler } =
+    useContext(EmailContext);
   //const closed = newState.closed;
   //console.log(newState);
 
@@ -13,18 +13,22 @@ const EmailModal = () => {
   const modalOpenedBefore = Cookies.get("modalOpenedBefore");
 
   useEffect(() => {
-    if (!modalOpenedBefore) {
-      document.body.addEventListener("mouseleave", () => {
-        openModalHandler();
-      });
-    }
+    // if (!modalOpenedBefore) {
+    //   document.body.addEventListener("mouseleave", () => {
+    //     openModalHandler();
+    //   });
+    // }
+    document.body.addEventListener("mouseleave", () => {
+      openModalHandler();
+    });
   }, []);
   //console.log(logo.current.textContent);
+  console.log(userEmailState);
 
   return (
     <section
       className={
-        openModal ? "email-modal  email-modal--visible" : "email-modal"
+        openModalState ? "email-modal  email-modal--visible" : "email-modal"
       }
     >
       <div className="email-modal__close-btn" onClick={closeModalHandler}>
@@ -53,8 +57,8 @@ const EmailModal = () => {
               type="email"
               className="email-modal__input"
               placeholder="youremail@mail.com"
-              value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
+              value={userEmailState}
+              onChange={(e) => userEmailHandler(e)}
             />
             <button className="email-modal__button">Send</button>
           </div>

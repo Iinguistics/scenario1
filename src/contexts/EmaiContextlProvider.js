@@ -4,25 +4,30 @@ import Cookies from "js-cookie";
 export const EmailContext = createContext();
 
 const EmailContextProvider = ({ children }) => {
-  const [newState, setNewState] = useState({
-    openModal: false,
-  });
+  const [openModalState, setOpenModelState] = useState(false);
+  const [userEmailState, setUserEmailState] = useState("");
 
   const openModalHandler = () => {
     Cookies.set("modalOpenedBefore", true, { expires: 7 });
-    setNewState({ ...newState, openModal: true });
+    setOpenModelState(true);
   };
 
   const closeModalHandler = () => {
-    setNewState({ ...newState, openModal: false });
+    setOpenModelState(false);
+  };
+
+  const userEmailHandler = (e) => {
+    setUserEmailState(e.target.value);
   };
 
   return (
     <EmailContext.Provider
       value={{
-        newState: newState,
+        openModalState,
+        userEmailState,
         openModalHandler: openModalHandler,
         closeModalHandler: closeModalHandler,
+        userEmailHandler: userEmailHandler,
       }}
     >
       {children}
