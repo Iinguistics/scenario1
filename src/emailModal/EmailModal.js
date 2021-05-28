@@ -6,11 +6,13 @@ const EmailModal = () => {
     userEmailState,
     openModalState,
     showEmailErrorState,
+    formCompletedState,
     openModalHandler,
     closeModalHandler,
     userEmailHandler,
     checkForEmailHandler,
     removeErrorMessageHandler,
+    submittedFormHandler,
   } = useContext(EmailContext);
 
   const logo = useRef("");
@@ -39,7 +41,10 @@ const EmailModal = () => {
         <i className="fa fa-window-close" />
       </div>
       <div className="email-modal__container">
-        <div className="email-modal__info">
+        <form
+          className="email-modal__info"
+          onSubmit={(e) => submittedFormHandler(e)}
+        >
           <div className="logo" ref={logo}>
             Berry
             <div className="logo__sub">by Jenny</div>
@@ -72,7 +77,12 @@ const EmailModal = () => {
               onBlur={checkForEmailHandler}
               onFocus={removeErrorMessageHandler}
             />
-            <button className="email-modal__button">Send</button>
+            <button
+              className="email-modal__button"
+              onClick={(e) => submittedFormHandler(e)}
+            >
+              Send
+            </button>
           </div>
           <div
             className="email-modal__decline-offer"
@@ -80,14 +90,20 @@ const EmailModal = () => {
           >
             Sorry, I'm not interested
           </div>
-        </div>
+        </form>
         <div className="email-modal__side-img">
           <img
             src="img/pexels-photo-4462782.jpeg"
             alt="black shoes with yellow background"
           />
         </div>
-        <div className="email-thank">
+        <div
+          className={
+            formCompletedState
+              ? "email-thank email-thank--success"
+              : "email-thank"
+          }
+        >
           <div className="email-thank__title">Thank You</div>
           <p className="email-thank__message">
             check your email we sent you some instructions... by the way welcome

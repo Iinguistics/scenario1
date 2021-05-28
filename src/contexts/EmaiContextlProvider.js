@@ -7,6 +7,7 @@ const EmailContextProvider = ({ children }) => {
   const [openModalState, setOpenModelState] = useState(false);
   const [userEmailState, setUserEmailState] = useState("");
   const [showEmailErrorState, setShowEmailErrorState] = useState(false);
+  const [formCompletedState, setFormCompletedState] = useState(false);
 
   const openModalHandler = () => {
     Cookies.set("modalOpenedBefore", true, { expires: 7 });
@@ -21,7 +22,7 @@ const EmailContextProvider = ({ children }) => {
     setUserEmailState(e.target.value);
   };
 
-  const checkForEmailHandler = (e) => {
+  const checkForEmailHandler = () => {
     function emailIsValid(text) {
       return /\S+@\S+\.\S+/.test(text);
     }
@@ -34,17 +35,26 @@ const EmailContextProvider = ({ children }) => {
     setShowEmailErrorState(false);
   };
 
+  const submittedFormHandler = (e) => {
+    e.preventDefault();
+    if (showEmailErrorState === false && userEmailState.length > 5) {
+      setFormCompletedState(true);
+    }
+  };
+
   return (
     <EmailContext.Provider
       value={{
         openModalState,
         userEmailState,
         showEmailErrorState,
+        formCompletedState,
         openModalHandler,
         closeModalHandler,
         userEmailHandler,
         checkForEmailHandler,
         removeErrorMessageHandler,
+        submittedFormHandler,
       }}
     >
       {children}
