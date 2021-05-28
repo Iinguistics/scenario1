@@ -6,8 +6,6 @@ const EmailModal = () => {
   const { openModalState } = useContext(EmailContext);
   const { openModalHandler, closeModalHandler, userEmailHandler } =
     useContext(EmailContext);
-  //const closed = newState.closed;
-  //console.log(newState);
 
   const logo = useRef("");
   const modalOpenedBefore = Cookies.get("modalOpenedBefore");
